@@ -127,3 +127,31 @@ account exists but was not used for direct SSH authentication.
 No unexpected interactive user accounts were identified during the review.
 Service accounts were generally configured without interactive login shells,
 which reduces unnecessary login exposure.
+
+### Sudo Privilege Assessment
+
+I reviewed the administrative privileges assigned to the ubuntu account
+using:
+
+```bash
+sudo -l
+## User and Account Assessment
+### Sudo Privilege Assessment
+
+The ubuntu account was configured with full sudo privileges, including
+passwordless execution of commands as root.
+
+This configuration is common for Ubuntu AWS instances, where SSH key
+authentication is used for initial administrative access.
+
+### Security Consideration
+
+Because the ubuntu account can obtain full root privileges, compromise
+of this account could result in complete system compromise.
+
+To reduce this risk, SSH access is restricted at the AWS Security Group
+level to my IP address, and the Ubuntu UFW firewall is enabled with a
+default-deny inbound policy.
+
+Protecting the SSH private key and limiting remote access are therefore
+critical security controls.

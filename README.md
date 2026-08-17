@@ -102,3 +102,28 @@ I also gained hands-on experience administering an Ubuntu Linux server over SSH 
 - Deploy a second server
 - Implement additional IAM controls
 - Perform controlled security testing
+  ## User and Account Assessment
+
+I reviewed currently logged-in users using:
+
+who
+
+The assessment identified one active interactive session belonging to the
+ubuntu administrative account.
+
+I also reviewed local accounts using:
+
+sudo getent passwd
+
+The majority of accounts were system/service accounts and used
+/usr/sbin/nologin or /bin/false as their login shell, preventing normal
+interactive login.
+
+The primary administrative account was the ubuntu account. The root
+account exists but was not used for direct SSH authentication.
+
+### Finding
+
+No unexpected interactive user accounts were identified during the review.
+Service accounts were generally configured without interactive login shells,
+which reduces unnecessary login exposure.

@@ -133,8 +133,9 @@ which reduces unnecessary login exposure.
 I reviewed the administrative privileges assigned to the ubuntu account
 using:
 
-```bash
+bash
 sudo -l
+
 ## User and Account Assessment
 ### Sudo Privilege Assessment
 

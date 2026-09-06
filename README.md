@@ -156,3 +156,25 @@ default-deny inbound policy.
 
 Protecting the SSH private key and limiting remote access are therefore
 critical security controls.
+
+## SSH Security Assessment
+
+The SSH service was reviewed to evaluate authentication and remote-access security.
+
+### Findings
+
+- Public-key authentication is enabled.
+- Password-based SSH authentication is disabled.
+- Direct root SSH access is currently configured to allow key-based authentication.
+
+### Security Controls
+
+The server uses SSH key-based authentication rather than passwords. Password authentication is disabled, reducing the risk of password-based brute-force attacks.
+
+SSH access is also restricted through the AWS Security Group to my IP address, while UFW is enabled with a default-deny inbound policy.
+
+### Recommended Hardening
+
+Direct root SSH access should be disabled entirely. Administrative access should instead use the `ubuntu` account with `sudo` privileges.
+
+This follows the principle of least privilege and reduces the risk associated with direct remote root access.

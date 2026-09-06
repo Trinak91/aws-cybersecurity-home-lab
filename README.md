@@ -203,5 +203,19 @@ A backup of the original SSH configuration was created before
 making the change:
 
     /etc/ssh/sshd_config.backup
+### Verification
+
+After applying the SSH hardening change, the SSH configuration was
+validated with `sshd -t` and returned no errors.
+
+The active SSH configuration was then verified with `sshd -T`:
+
+    permitrootlogin no
+    pubkeyauthentication yes
+    passwordauthentication no
+
+This confirms that direct root SSH access has been disabled while
+public-key authentication remains enabled and password-based SSH
+authentication remains disabled.
 
 This follows the principle of least privilege and reduces the risk associated with direct remote root access.

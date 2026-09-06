@@ -217,5 +217,22 @@ The active SSH configuration was then verified with `sshd -T`:
 This confirms that direct root SSH access has been disabled while
 public-key authentication remains enabled and password-based SSH
 authentication remains disabled.
+## Linux File Permission Assessment
+
+### /etc/passwd
+
+The permissions of `/etc/passwd` were reviewed using `ls -l`.
+
+    -rw-r--r-- 1 root root /etc/passwd
+
+The file is owned by `root` and is writable only by the root user.
+Other users have read-only access, which is expected because Linux
+systems require account information in `/etc/passwd` to be readable.
+
+### Security Assessment
+
+No excessive write permissions were identified on `/etc/passwd`.
+Restricting write access to root helps prevent unauthorized
+modification of system account information.
 
 This follows the principle of least privilege and reduces the risk associated with direct remote root access.

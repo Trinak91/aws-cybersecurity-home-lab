@@ -176,5 +176,32 @@ SSH access is also restricted through the AWS Security Group to my IP address, w
 ### Recommended Hardening
 
 Direct root SSH access should be disabled entirely. Administrative access should instead use the `ubuntu` account with `sudo` privileges.
+### SSH Hardening Finding
+
+The initial SSH configuration allowed direct root login using
+public-key authentication. The configuration reported:
+
+    permitrootlogin without-password
+    pubkeyauthentication yes
+    passwordauthentication no
+
+Although password-based SSH authentication was disabled, allowing
+direct root access through SSH increases the impact of a compromised
+root credential.
+
+### Remediation
+
+To follow the principle of least privilege, direct root SSH access
+was disabled by configuring:
+
+    PermitRootLogin no
+
+Administrative tasks will instead be performed through the
+non-root `ubuntu` account using `sudo`.
+
+A backup of the original SSH configuration was created before
+making the change:
+
+    /etc/ssh/sshd_config.backup
 
 This follows the principle of least privilege and reduces the risk associated with direct remote root access.

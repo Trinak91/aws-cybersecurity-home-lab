@@ -251,4 +251,21 @@ The permissions on `/etc/shadow` are appropriately restrictive.
 Because this file contains password hashes and authentication-related
 information, limiting access helps reduce the risk of unauthorized
 access to credential data.
+
 This follows the principle of least privilege and reduces the risk associated with direct remote root access.
+### /etc/ssh
+
+The permissions of the SSH configuration directory were reviewed
+using `ls -ld`.
+
+    drwxr-xr-x 4 root root /etc/ssh
+
+The directory is owned by `root` and is writable only by the root
+user. Other users have read and execute permissions but cannot
+modify, create, or delete files within the directory.
+
+### Security Assessment
+
+The `/etc/ssh` directory permissions are appropriately configured.
+Restricting write access to root helps prevent unauthorized
+modification of SSH configuration files and host keys.

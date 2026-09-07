@@ -266,6 +266,13 @@ modify, create, or delete files within the directory.
 
 ### Security Assessment
 
+
+The `/etc/ssh` directory permissions are appropriately configured.
+Restricting write access to root helps prevent unauthorized
+modification of SSH configuration files and host keys.
+
+### Security Assessment
+
 The `/etc/ssh` directory permissions are appropriately configured.  
 ### /etc/ssh/sshd_config
 
@@ -282,5 +289,4 @@ Other users have read-only access.
 The SSH configuration file has appropriate write permissions.
 Restricting modification to root helps prevent unauthorized changes
 to SSH authentication and access-control settings.
-Restricting write access to root helps prevent unauthorized
-modification of SSH configuration files and host keys.
+

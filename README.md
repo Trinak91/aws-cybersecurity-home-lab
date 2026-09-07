@@ -405,3 +405,25 @@ security.
 
 Services should be periodically reviewed and unnecessary services
 disabled to reduce the system's attack surface.
+### Network Listening Service Assessment
+
+Network sockets were reviewed using:
+
+    sudo ss -tulpn
+
+The assessment identified SSH listening on TCP port 22, local DNS
+resolution services on port 53, chrony on UDP port 323, and DHCP
+traffic on UDP port 68.
+
+SSH was the only externally relevant TCP service identified. The DNS
+resolver and chrony services were bound to localhost, limiting their
+network exposure.
+
+### Security Assessment
+
+The exposed SSH service is expected because SSH is required for remote
+administration of the EC2 instance. Access is restricted through the
+AWS Security Group and host-based UFW firewall.
+
+No unnecessary externally exposed application services were identified
+during the assessment.

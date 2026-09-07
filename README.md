@@ -362,3 +362,24 @@ SUID programs are security-sensitive because they can execute with
 the privileges of their file owner. Privileged executables should
 therefore be limited to trusted system components and regularly
 updated to address vulnerabilities.
+
+### Scheduled Task / Cron Assessment
+
+System cron directories were reviewed to identify scheduled tasks
+that could potentially be used for persistence:
+
+    sudo ls -la /etc/cron.d /etc/cron.daily /etc/cron.hourly /etc/cron.weekly /etc/cron.monthly
+
+The assessment identified standard Ubuntu maintenance tasks including
+`e2scrub_all`, `sysstat`, `apport`, `apt-compat`, `dpkg`, `logrotate`,
+and `man-db`.
+
+### Security Assessment
+
+The identified scheduled tasks appear consistent with normal Ubuntu
+system maintenance. No unexpected or user-created cron jobs were
+identified in the directories examined.
+
+The cron directories and scripts are owned by `root`, and the
+maintenance scripts are not writable by ordinary users. This reduces
+the risk of unauthorized modification of scheduled tasks.

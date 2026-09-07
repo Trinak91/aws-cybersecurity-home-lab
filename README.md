@@ -235,4 +235,20 @@ No excessive write permissions were identified on `/etc/passwd`.
 Restricting write access to root helps prevent unauthorized
 modification of system account information.
 
+### /etc/shadow
+
+The permissions of `/etc/shadow` were reviewed using `ls -l`.
+
+    -rw-r----- 1 root shadow /etc/shadow
+
+The file is owned by `root` and assigned to the `shadow` group. Only
+the root user and members of the `shadow` group have read access.
+Other users have no permissions on the file.
+
+### Security Assessment
+
+The permissions on `/etc/shadow` are appropriately restrictive.
+Because this file contains password hashes and authentication-related
+information, limiting access helps reduce the risk of unauthorized
+access to credential data.
 This follows the principle of least privilege and reduces the risk associated with direct remote root access.

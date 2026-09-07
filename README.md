@@ -290,3 +290,19 @@ The SSH configuration file has appropriate write permissions.
 Restricting modification to root helps prevent unauthorized changes
 to SSH authentication and access-control settings.
 
+### SSH Configuration Backup
+
+The permissions of the SSH configuration backup were reviewed using
+`ls -l`.
+
+    -rw-r--r-- 1 root root /etc/ssh/sshd_config.backup
+
+The backup is owned by `root` and is writable only by the root user.
+Other users have read-only access.
+
+### Security Assessment
+
+The backup file is protected against unauthorized modification.
+Restricting write access to root helps preserve the integrity of the
+configuration backup.
+

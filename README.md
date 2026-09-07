@@ -341,3 +341,24 @@ which is commonly `root`.
 Further validation can be performed to confirm the system's expected
 SUID binaries and ensure that no privileged executables are
 unnecessarily exposed.
+
+### SUID File Assessment
+
+SUID-enabled executables were identified using:
+
+    sudo find /usr /bin /sbin -type f -perm -4000 -ls 2>/dev/null
+
+The assessment identified SUID binaries including `sudo`, `passwd`,
+`su`, `mount`, `umount`, OpenSSH `ssh-keysign`, and other standard
+Ubuntu system utilities.
+
+### Security Assessment
+
+The identified SUID files appear to be standard system components
+provided by Ubuntu and installed software packages. No unexpected
+user-created SUID executable was identified during this assessment.
+
+SUID programs are security-sensitive because they can execute with
+the privileges of their file owner. Privileged executables should
+therefore be limited to trusted system components and regularly
+updated to address vulnerabilities.

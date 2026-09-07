@@ -321,3 +321,23 @@ No world-writable regular files were identified on the primary
 filesystem. This reduces the risk of unauthorized users modifying
 files that could potentially be used to compromise system integrity
 or execute unauthorized code.
+
+### SUID File Assessment
+
+A search was performed for SUID-enabled regular files on the primary
+filesystem:
+
+    sudo find / -xdev -type f -perm -4000 -ls 2>/dev/null
+
+The command returned no results.
+
+### Security Assessment
+
+No SUID-enabled regular files were identified within the filesystem
+scope examined by this command. SUID files can be security-sensitive
+because they may execute with the privileges of their file owner,
+which is commonly `root`.
+
+Further validation can be performed to confirm the system's expected
+SUID binaries and ensure that no privileged executables are
+unnecessarily exposed.

@@ -383,3 +383,25 @@ identified in the directories examined.
 The cron directories and scripts are owned by `root`, and the
 maintenance scripts are not writable by ordinary users. This reduces
 the risk of unauthorized modification of scheduled tasks.
+### Running Service Assessment
+
+Running systemd services were reviewed using:
+
+    systemctl list-units --type=service --state=running
+
+The assessment identified 24 active services. These included SSH,
+system logging, time synchronization, scheduled task management,
+networking, automatic updates, and the AWS Systems Manager agent.
+
+### Security Assessment
+
+The running services appear consistent with the expected functionality
+of an Ubuntu AWS server. No unexpected or obviously suspicious service
+was identified during the initial review.
+
+The `unattended-upgrades` service was also observed running, providing
+automatic package update functionality that can help maintain system
+security.
+
+Services should be periodically reviewed and unnecessary services
+disabled to reduce the system's attack surface.
